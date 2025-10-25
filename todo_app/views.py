@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from django.urls import reverse_lazy
 from .models import Tarefa
 from .forms import TarefaForm
@@ -19,3 +19,8 @@ class Criar_tarefa(CreateView):
     context_object_name = 'formulario'
     template_name = 'tarefa_create.html'
     success_url = reverse_lazy('todo:listar')
+
+class Exibir_tarefa(DetailView):
+    model = Tarefa
+    context_object_name = 'tarefa'
+    template_name = 'tarefa_detail.html'
