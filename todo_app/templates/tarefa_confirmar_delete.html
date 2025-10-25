@@ -1,0 +1,4 @@
+<form action="{% url 'todo:deletar' tarefa.id %}" method="post">{% csrf_token %}
+    <h1>Certeza que deseja deletar a tarefa {{ tarefa.nome_tarefa }}</h1>
+    <button type="submit">Confirmar</button>
+</form>

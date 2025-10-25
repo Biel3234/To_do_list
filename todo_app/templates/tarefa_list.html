@@ -16,6 +16,7 @@
                     <td>{{ tarefa.nome_tarefa }}</td><td>
                     <td>{{ tarefa.concluida }}</td>
                     <td><a href="{% url 'todo:detalhar' tarefa.id %}">Editar</a></td>
+                    <td><a href="{% url 'todo:deletar' tarefa.id %}">Deletar</a></td>
                 </tr>
             {% endfor %}
 </body>

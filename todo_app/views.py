@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import ListView, CreateView, UpdateView, DetailView
+from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 from django.urls import reverse_lazy
 from .models import Tarefa
 from .forms import TarefaForm
@@ -24,3 +24,9 @@ class Exibir_tarefa(DetailView):
     model = Tarefa
     context_object_name = 'tarefa'
     template_name = 'tarefa_detail.html'
+
+class Deletar_tarefa(DeleteView):
+    model = Tarefa
+    context_object_name = 'tarefa'
+    template_name = 'tarefa_confirmar_delete.html'
+    success_url = reverse_lazy('todo:listar')
