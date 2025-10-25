@@ -1,6 +1,9 @@
 from django.urls import path
-from .views import Listar_tarefas
+from .views import Listar_tarefas, Criar_tarefa
+
+app_name = 'todo'
 
 urlpatterns = [
-    path('listar/', Listar_tarefas.as_view())
+    path('listar/', Listar_tarefas.as_view(), name='listar'),
+    path('criar/', Criar_tarefa.as_view(), name='criar')
 ]

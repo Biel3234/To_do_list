@@ -9,7 +9,7 @@ class User(models.Model):
 
 class Tarefa(models.Model):
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tarefas')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tarefas', null=True)
     nome_tarefa = models.CharField(max_length=100)
     descricao = models.TextField(max_length=300)
     data_criacao = models.DateTimeField(auto_now_add=True)
