@@ -30,3 +30,10 @@ class Deletar_tarefa(DeleteView):
     context_object_name = 'tarefa'
     template_name = 'tarefa_confirmar_delete.html'
     success_url = reverse_lazy('todo:listar')
+
+class Editar_tarefa(UpdateView):
+    model = Tarefa
+    context_object_name = 'tarefa'
+    form_class = TarefaForm
+    template_name = 'tarefa_update.html'
+    success_url = reverse_lazy('todo:listar')

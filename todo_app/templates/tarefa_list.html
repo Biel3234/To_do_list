@@ -6,6 +6,8 @@
     <title>To do List</title>
 </head>
 <body>
+    <h1>Lista de Tarefas</h1>
+    <td><a href="{% url 'todo:criar' %}">Criar Tarefa</a></td>
         <table>
             <tr>
                 <th>Tarefa</th>
@@ -14,8 +16,9 @@
             {% for tarefa in tarefas %}
                 <tr>
                     <td>{{ tarefa.nome_tarefa }}</td><td>
-                    <td>{{ tarefa.concluida }}</td>
-                    <td><a href="{% url 'todo:detalhar' tarefa.id %}">Editar</a></td>
+                    <td><input type="checkbox">{{ tarefa.concluida }}</td></td>
+                    <td><a href="{% url 'todo:editar' tarefa.id %}">Editar</a></td>
+                    <td><a href="{% url 'todo:detalhar' tarefa.id %}">Detalhes</a></td>
                     <td><a href="{% url 'todo:deletar' tarefa.id %}">Deletar</a></td>
                 </tr>
             {% endfor %}
