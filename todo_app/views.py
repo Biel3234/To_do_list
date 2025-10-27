@@ -3,11 +3,11 @@ from django.http import HttpResponse
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate
 from .models import Tarefa
 from .forms import TarefaForm
 
-# Create your views here.
-
+# CRUD para manusear as tasks
 
 class Listar_tarefas(ListView):
     model = Tarefa
@@ -39,6 +39,8 @@ class Editar_tarefa(UpdateView):
     template_name = 'tarefa_update.html'
     success_url = reverse_lazy('todo:listar')
 
+
+
 def cadastrar_usuario(request):
     if request.method == 'GET':
         return render(request, 'cadastro.html')
@@ -55,4 +57,19 @@ def cadastrar_usuario(request):
             user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
 
-        return HttpResponse(username)
+    return HttpResponse('<h1>Usuario Cadastrado com sucesso<h1>')
+
+
+def login_usuario(request):
+    if request.method == 'GET':
+        return render(request, 'login.html')
+    else:
+        username = request.POST.get('nome')
+        password = request.POST.get('senha')
+        user = authenticate(request, username=username, password=password)
+        if user:
+            login(request, user)
+            return HttpResponse('<h1>Logado com sucesso')
+        else:
+            return HttpResponse('<h1>Usuario nao existe<h1>')
+
