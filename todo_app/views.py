@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from .models import Tarefa
 from .forms import TarefaForm
 
@@ -69,7 +69,11 @@ def login_usuario(request):
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
-            return HttpResponse('<h1>Logado com sucesso')
+            return HttpResponse(render(request, 'tarefa_list.html'))
         else:
             return HttpResponse('<h1>Usuario nao existe<h1>')
+        
+def deslogar(request):
+    logout(request)
+    return HttpResponse(render(request, 'tarefa_list.html'))
 
