@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.models import User
 from .models import Tarefa
 from .forms import TarefaForm
 
@@ -37,3 +38,21 @@ class Editar_tarefa(UpdateView):
     form_class = TarefaForm
     template_name = 'tarefa_update.html'
     success_url = reverse_lazy('todo:listar')
+
+def cadastrar_usuario(request):
+    if request.method == 'GET':
+        return render(request, 'cadastro.html')
+    else:
+        username = request.POST.get('nome')
+        email = request.POST.get('email')
+        password = request.POST.get('senha')
+
+        user = User.objects.filter(username = username).first()
+
+        if user:
+            return HttpResponse('Usuario ja existe')
+        else:
+            user = User.objects.create_user(username=username, email=email, password=password)
+            user.save()
+
+        return HttpResponse(username)
