@@ -103,7 +103,7 @@ def deslogar(request):
 
 def alterar_status(request, id):
     tarefa = get_object_or_404(Tarefa, id=id)
-    tarefa.concluida = not tarefa.concluida  # alterna True/False
+    tarefa.concluida = not tarefa.concluida 
     tarefa.save()
-    return redirect('todo:listar')  # volta pra lista de tarefas
+    return redirect('todo:listar')
 
