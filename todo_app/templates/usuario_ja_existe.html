@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuário Já Existe - To do List</title>
+    <link rel="stylesheet" href="{% static 'css.css' %}">
+    <style>
+        .error-message {
+            color: #e74c3c;
+            font-size: 1.2em;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .icon-error {
+            font-size: 3em;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="icon-error">❌</div>
+        <h1>Ops! Usuário já existe</h1>
+        <div class="error-message">
+            Este nome de usuário já está sendo utilizado.<br>
+            Por favor, escolha um nome de usuário diferente.
+        </div>
+        <div>
+            <a href="{% url 'todo:cadastro' %}" class="btn">Tentar novamente</a>
+            <a href="{% url 'todo:logar' %}" class="voltar">← Voltar para login</a>
+        </div>
+    </div>
+</body>
+</html>

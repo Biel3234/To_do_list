@@ -1,34 +1,55 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css.css' %}" media="screen" />
     <title>To do List</title>
+    <!-- CSS direto no head -->
 </head>
 <body>
-    
-    {% if request.user.is_authenticated %}
-    <p>{{ request.user }}</p>
-    <a href="{% url 'todo:deslogar' %}">Logout</a>
-    {% else %}
-    <a href="{% url 'todo:logar' %}">Login</a>
-    {% endif %}
+    <header>
+        <div>
+            <h2>To do List</h2>
+        </div>
+        <div>
+            {% if request.user.is_authenticated %}
+                <span>{{ request.user }}</span>
+                <a href="{% url 'todo:deslogar' %}" class="btn logout">Logout</a>
+            {% else %}
+                <a href="{% url 'todo:logar' %}" class="btn">Login</a>
+            {% endif %}
+        </div>
+    </header>
 
-    <h1>Lista de Tarefas</h1>
-    <td><a href="{% url 'todo:criar' %}">Criar Tarefa</a></td>
+    <div class="container">
+        <h1>Minhas Tarefas</h1>
+        <a href="{% url 'todo:criar' %}" class="btn">+ Criar Tarefa</a>
         <table>
             <tr>
                 <th>Tarefa</th>
                 <th>Status</th>
+                <th>Ações</th>
             </tr>
             {% for tarefa in tarefas %}
-                <tr>
-                    <td>{{ tarefa.nome_tarefa }}</td><td>
-                    <td><input type="checkbox">{{ tarefa.concluida }}</td></td>
-                    <td><a href="{% url 'todo:editar' tarefa.id %}">Editar</a></td>
-                    <td><a href="{% url 'todo:detalhar' tarefa.id %}">Detalhes</a></td>
-                    <td><a href="{% url 'todo:deletar' tarefa.id %}">Deletar</a></td>
-                </tr>
+            <tr>
+                <td>{{ tarefa.nome_tarefa }}</td>
+                <td>
+                    {% if tarefa.concluida %}
+                        ✅ Concluída
+                    {% else %}
+                        ⏳ Pendente
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'todo:editar' tarefa.id %}" class="btn">Editar</a>
+                    <a href="{% url 'todo:detalhar' tarefa.id %}" class="btn">Detalhes</a>
+                    <a href="{% url 'todo:deletar' tarefa.id %}" class="btn logout">Deletar</a>
+                </td>
+            </tr>
             {% endfor %}
+        </table>
+    </div>
 </body>
 </html>

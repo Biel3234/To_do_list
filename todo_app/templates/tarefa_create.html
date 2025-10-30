@@ -1,19 +1,24 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To do list</title>
+    <link rel="stylesheet" href="{% static 'css.css' %}">
 </head>
 <body>
-    <h1>Crie sua tarefa: </h1>
-    <form method="post" action="{% url 'todo:criar' %}">{% csrf_token %}
+    <div class="auth-container">
+    <h1>Crie sua tarefa</h1>
+    <form method="post" action="{% url 'todo:criar' %}">
+        {% csrf_token %}
         {% for field in form %}
-        {{ field.label_tag }}
-        {{ field }}
-        <br><br>
+            {{ field.label_tag }}
+            {{ field }}
         {% endfor %}
         <button type="submit">Criar</button>
     </form>
+
+    <a href="{% url 'todo:listar' %}" class="voltar">← Voltar para a lista</a>
 </body>
 </html>

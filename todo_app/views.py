@@ -65,7 +65,6 @@ class Editar_tarefa(Requer_login, UpdateView):
         return Tarefa.objects.filter(usuario=self.request.user)
 
 
-
 def cadastrar_usuario(request):
     if request.method == 'GET':
         return render(request, 'cadastro.html')
@@ -77,12 +76,12 @@ def cadastrar_usuario(request):
         user = User.objects.filter(username = username).first()
 
         if user:
-            return HttpResponse('Usuario ja existe')
+            return HttpResponse(render(request, 'usuario_ja_existe.html'))
         else:
             user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
 
-    return HttpResponse('<h1>Usuario Cadastrado com sucesso<h1>')
+    return redirect('todo:logar')
 
 
 def login_usuario(request):

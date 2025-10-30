@@ -1,20 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Usuario</title>
+    <title>Cadastro - To do List</title>
+    <link rel="stylesheet" href="{% static 'css.css' %}">
 </head>
 <body>
-    <h1>Cadastro: </h1>
-    <form action="{% url 'todo:cadastro' %}" method="POST">{% csrf_token %}
-        <input type="text" name="nome" placeholder="Username...">
-        <br><br>
-        <input type="email" name="email" placeholder="Email...">
-        <br><br>
-        <input type="password" name="senha" placeholder="Senha...">
-        <br><br>
-        <button type="submit">Cadastrar</button>
-    </form>
+    <div class="auth-container">
+        <h1>Cadastro</h1>
+        <form action="{% url 'todo:cadastro' %}" method="POST">{% csrf_token %}
+            <input type="text" name="nome" placeholder="Username...">
+            <input type="email" name="email" placeholder="Email...">
+            <input type="password" name="senha" placeholder="Senha...">
+            <button type="submit">Cadastrar</button>
+        </form>
+        <a href="{% url 'todo:logar' %}" class="voltar">← Voltar para login</a>
+    </div>
 </body>
 </html>

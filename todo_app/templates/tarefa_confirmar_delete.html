@@ -1,4 +1,21 @@
-<form action="{% url 'todo:deletar' tarefa.id %}" method="post">{% csrf_token %}
-    <h1>Certeza que deseja deletar a tarefa {{ tarefa.nome_tarefa }}</h1>
-    <button type="submit">Confirmar</button>
-</form>
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Exclusão - To do List</title>
+    <link rel="stylesheet" href="{% static 'css.css' %}">
+</head>
+<body>
+    <div class="delete-confirmation">
+        <h1>Confirmar Exclusão</h1>
+        <p>Tem certeza que deseja excluir a tarefa "{{ tarefa.nome_tarefa }}"?</p>
+        <form action="{% url 'todo:deletar' tarefa.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn logout">Confirmar Exclusão</button>
+        </form>
+        <a href="{% url 'todo:listar' %}" class="voltar">← Cancelar e voltar</a>
+    </div>
+</body>
+</html>
