@@ -95,7 +95,7 @@ def login_usuario(request):
             login(request, user)
             return redirect('todo:listar')
         else:
-            return HttpResponse('<h1>Usuario nao existe<h1>')
+            return HttpResponse(render(request, 'usuario_nao_existe.html'))
         
 def deslogar(request):
     logout(request)
