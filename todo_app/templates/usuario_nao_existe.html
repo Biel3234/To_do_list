@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Usuário Não Existe - To do List</title>
+	<link rel="stylesheet" href="{% static 'css.css' %}">
+</head>
+<body>
+	<div class="auth-container">
+		<div class="icon-error">🔍</div>
+		<h1>Usuário não encontrado</h1>
+		<div class="error-message">
+			Não encontramos uma conta com esse nome de usuário.<br>
+			Verifique o nome digitado ou crie uma nova conta.
+		</div>
+		<div>
+			<a href="{% url 'todo:logar' %}" class="btn">Tentar novamente</a>
+			<a href="{% url 'todo:cadastro' %}" class="voltar">← Criar conta</a>
+		</div>
+	</div>
+</body>
+</html>
+
