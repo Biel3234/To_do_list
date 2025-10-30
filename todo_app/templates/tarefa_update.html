@@ -19,6 +19,10 @@
         <button type="submit">Editar</button>
     </form>
 
+    <a href="{% url 'todo:alterar_status' tarefa.id %}" class="btn">
+        {% if tarefa.concluida %}Marcar como Pendente{% else %}Marcar como Concluída{% endif %}
+    </a>
+
     <a href="{% url 'todo:listar' %}" class="voltar">← Voltar para a lista</a>
 </body>
 </html>

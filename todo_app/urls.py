@@ -11,5 +11,6 @@ urlpatterns = [
     path('editar/<int:pk>/', views.Editar_tarefa.as_view(), name='editar'),
     path('cadastro/', views.cadastrar_usuario, name='cadastro'),
     path('login/', views.login_usuario, name='logar'),
-    path('deslogar/', views.deslogar, name='deslogar')
+    path('deslogar/', views.deslogar, name='deslogar'),
+    path('tarefa/<int:id>/toggle/', views.alterar_status, name='alterar_status'),
 ]

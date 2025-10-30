@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 from django.urls import reverse_lazy
@@ -100,4 +100,10 @@ def login_usuario(request):
 def deslogar(request):
     logout(request)
     return redirect('todo:logar')
+
+def alterar_status(request, id):
+    tarefa = get_object_or_404(Tarefa, id=id)
+    tarefa.concluida = not tarefa.concluida  # alterna True/False
+    tarefa.save()
+    return redirect('todo:listar')  # volta pra lista de tarefas
 
